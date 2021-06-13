@@ -1,0 +1,111 @@
+\documentclass[11pt,a4paper]{jsarticle}
+%
+\usepackage{amsmath,amssymb}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{ascmac}
+\usepackage{titlesec}
+\usepackage{otf}
+\usepackage{amsthm}
+\usepackage{physics}
+\usepackage{booktabs}
+%
+\setlength{\textwidth}{\fullwidth}
+\setlength{\textheight}{39\baselineskip}
+\addtolength{\textheight}{\topskip}
+%\setlength{\voffset}{-0.1in}
+\setlength{\topmargin}{0pt}
+\setlength{\headheight}{0pt}
+\setlength{\headsep}{0pt}
+
+% \renewcommand{\thesection}{演習問題\arabic{section}}
+% \titleformat*{\section}{\normalsize\bfseries}
+% \titleformat*{\subsection}{\normalsize\bfseries}
+
+\newtheorem{problem}{演習問題}
+\newtheorem{answer}{解答}
+\renewcommand{\theanswer}{}
+\newcommand{\N}{\mathcal{N}}
+%
+%\newcommand{\divergence}{\mathrm{div}\,}  %ダイバージェンス
+%\newcommand{\grad}{\mathrm{grad}\,}  %グラディエント
+%\newcommand{\rot}{\mathrm{rot}\,}  %ローテーション
+\newcommand{\Zahlen}{\mathbb{Z}}
+\newcommand{\const}{\mathrm{const}}
+\newcommand{\laplace}{\mathcal{L}}
+
+\begin{document}
+
+\begin{center}
+  {\Large\bfseries \TeX 演習問題} % title
+\end{center}
+\begin{flushright}
+  {\large 43M21224 諏訪 棟植} % author
+\end{flushright}
+
+\section{数学}
+
+\subsection{フーリエ級数展開}
+
+$f(x)$のフーリエ級数展開を\eqref{fourier-series}に示す．
+\begin{align}\label{fourier-series}
+  f(x)\sim\frac{a_0}{2}+\sum_{n=1}^\infty\left(a_n\cos nx+b_n\sin nx\right)
+\end{align}
+ただし，$a_n,b_n$は，
+\begin{align*}
+  a_n & =\frac{1}{\pi}\int_{-\pi}^\pi f(t)\cos(nt) dt,~(n=0,1,2,3,\cdots) \\
+  b_n & =\frac{1}{\pi}\int_{-\pi}^\pi f(t)\sin(nt) dt,~(n=1,2,3,\cdots)
+\end{align*}
+である．
+
+\subsection{フーリエ変換表}
+
+フーリエ変換表を表\ref{tab:fourier-transform}に示す．
+\begin{table}[htb]
+  \centering
+  \caption{フーリエ変換表}
+  \label{tab:fourier-transform}
+  \begin{tabular}{c|c}
+    $f(t)$                & $F(s)$                      \\ \hline
+    $f^\prime(t)$         & $sF(s)-f(0)$                \\
+    $f^{\prime\prime}(t)$ & $s^2F(s)-sf(0)-f^\prime(0)$ \\
+    $t^ne^{-at}$          & $n!/(s+a)^{n+1}$            \\
+  \end{tabular}
+\end{table}
+
+\subsection{余因子行列}
+
+余因子行列$\tilde{A}$は，余因子$M_{i,j}$を用いると，
+\begin{align*}
+  \tilde{A}=
+  \begin{bmatrix}
+    (-1)^{1+1}\left|M_{1,1}\right| & (-1)^{1+2}\left|M_{2,1}\right| & \cdots & (-1)^{1+n}\left|M_{n,1}\right| \\
+    (-1)^{2+1}\left|M_{1,2}\right| & (-1)^{2+2}\left|M_{2,2}\right| & \cdots & (-1)^{2+n}\left|M_{n,2}\right| \\
+    \vdots                         & \vdots                         & \ddots & \vdots                         \\
+    (-1)^{m+1}\left|M_{1,1}\right| & (-1)^{m+2}\left|M_{2,1}\right| & \cdots & (-1)^{1+n}\left|M_{n,m}\right| \\
+  \end{bmatrix}
+\end{align*}
+と表される．
+
+\subsection{ロピタルの定理}
+
+$x$に関する関数$f(x),g(x)$について，
+\begin{itemize}
+  \item $\lim_{x\to a}\frac{f^\prime(x)}{g^\prime(x)}$が存在すること
+  \item 極限の行き先の十分近くで$g^\prime(x)\neq 0$
+\end{itemize}
+のとき，
+\begin{align*}
+  \lim_{x\to a}\frac{f(x)}{g(x)}=\lim_{x\to a}\frac{f^\prime(x)}{g^\prime(x)}
+\end{align*}
+が成り立つ．
+
+\section{物理}
+
+% \begin{figure}[hbtp]\centering
+%   \includegraphics[width=8cm]{figures/-crop.pdf}
+%   \caption{}
+%   \label{fig:}
+% \end{figure}
+
+\end{document}
