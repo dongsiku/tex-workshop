@@ -1,0 +1,97 @@
+\documentclass[11pt,a4paper]{jsarticle}
+%
+\usepackage{amsmath,amssymb}
+\usepackage{bm}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{ascmac}
+\usepackage{url}
+%
+\usepackage{titlesec}     % For \titleformat
+% \usepackage{enumerate}  % For enumerate
+% \usepackage{ulem}       % For underlining
+%
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+\setcounter{section}{-1}
+%
+\setlength{\textwidth}{\fullwidth}
+\setlength{\textheight}{37\baselineskip}
+\addtolength{\textheight}{\topskip}
+\setlength{\voffset}{-0.5in}
+\setlength{\headsep}{0.3in}
+%
+%\newcommand{\divergence}{\mathrm{div}\,}  %ダイバージェンス
+%\newcommand{\grad}{\mathrm{grad}\,}  %グラディエント
+%\newcommand{\rot}{\mathrm{rot}\,}  %ローテーション
+%
+\pagestyle{myheadings}
+\markright{知能機械制御学研究室：\TeX 講習会の資料}
+\begin{document}
+%
+%
+\section{はじめに}
+
+この文書は，\TeX の文法について，数式を中心にざっくりとまとめたものである．本文書も\TeX で書かれているため，必要に応じて\TeX ファイル``tex-workshop.tex''を参照せよ．なお，詳細は``tex ギリシャ文字''などでググること．
+
+\section{数式の基本}
+
+\subsection{文中の数式}
+
+文中の数式$j=\sqrt{-1}$は，\verb|$j=\sqrt{-1}$|といったように，\verb|$|で囲んで書く．
+
+\subsection{別行立ての数式}
+
+別行立ての数式は，\verb|\begin{align},\end{align}|といったように，``align''で囲んで書く．また，2行以上の数式の場合は，\verb|&|を用いることで，文字を揃えられる．なお，数式中の空白文字は無視されるため，必要な時は\verb|~|や\verb|\quad|などを用いる．
+\begin{align}
+  x^3+y^3             & =(x+y)\left(x^2-xy+y^2\right) \label{factorization-1} \\
+  x^3-y^3             & =(x-y)\left(x^2+xy+y^2\right) \label{factorization-2} \\
+  \frac{x^3-y^3}{x-y} & =x^2+xy+y^2,~(x\neq y) \label{factorization-3}
+\end{align}
+
+\subsection{式番号}
+
+ここで，\eqref{factorization-1}などと数式を指定する場合は，式に\verb|\label{factorization-1}|などのラベル付けたうえで，\verb|\eqref{factorization-1}|のように``eqref''を使う．数式の番号が一部のみ必要なときは，\eqref{factorization-4}のように\verb|\nonumber|を用いる．
+\begin{align}\label{factorization-4}
+  4x^2+8x+4 & =4\left(x^2+2x+1\right)\nonumber \\
+            & =4(x+1)^2
+\end{align}
+まったく必要ないときは，\verb|\begin{align*},\end{align*}|で囲う．
+\begin{align*}
+  x^3-1=(x-1)\left(x^2+x+1\right)
+\end{align*}
+
+\subsection{その他}
+
+これ以外にも，
+\begin{equation*}
+  \delta(x) =
+  \begin{cases}
+    1, & x \geq 0 \\
+    0, & x < 0
+  \end{cases}
+\end{equation*}
+のように場合分けの数式なども記述可能である．詳細は，``amsmathの数式環境まとめ''（\url{https://qiita.com/t_kemmochi/items/a4c390b4967b13f3afb7}）などを参照せよ．
+
+\section{下付き文字と上付き文字}
+
+下付き文字$z_1<1$は，\verb|$z_1<1$|のように\verb|_|を，上付き文字は$j^2=-1$のように\verb|^|を用いる．なお，下付き文字や上付き文字が2文字以上$a_{10},b^{20},c_{10}^{20}$のときは\verb|$a_{10},b^{20},c_{10}^{20}$|のように\verb|{ }|を用いる．
+
+\section{和・積分（シグマとインテグラル）}
+
+和（シグマ）は\verb|\sum|（\verb|\Sigma|でないことに注意せよ），積分（インテグラル）は\verb|\int|を用いる．下限と上限は，下付き文字と上付き文字のように\verb|_{}^{}|を用いる．
+\begin{align*}
+  \sum_{k=1}^{n}a_k & =a_1+a_2+a_3+\cdots+a_n \\
+  \int_0^1 x dx     & = \frac{1}{2}
+\end{align*}
+
+\section{分数}
+
+分数は基本的に\verb|\frac|を用いる．ただし，テキストスタイルとディスプレイスタイルは，それぞれ\verb|\tfrec,\dfrac|をもちいる．\verb|\frec{K}{Ts+1},\tfrec{K}{Ts+1},\dfrac{K}{Ts+1}|について，文中の数式ではそれぞれ$\frac{K}{Ts+1},\tfrac{K}{Ts+1},\dfrac{K}{Ts+1}$と，別行立ての数式では
+\begin{align*}
+  G(s) & =\frac{K}{Ts+1},  \\
+  G(s) & =\tfrac{K}{Ts+1}, \\
+  G(s) & =\dfrac{K}{Ts+1}
+\end{align*}
+と表記される．
+
+\end{document}
