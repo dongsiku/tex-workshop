@@ -2,7 +2,7 @@
 %
 \usepackage{amsmath,amssymb}
 \usepackage{bm}
-\usepackage{graphicx}
+\usepackage[dvipdfmx]{graphicx}
 \usepackage{ascmac}
 \usepackage{titlesec}
 \usepackage{otf}
@@ -49,63 +49,63 @@
 
 $f(x)$のフーリエ級数展開を\eqref{fourier-series}に示す．
 \begin{align}\label{fourier-series}
-  f(x)\sim\frac{a_0}{2}+\sum_{n=1}^\infty\left(a_n\cos nx+b_n\sin nx\right)
+  f(x)\sim\frac{a_0}{2}+\sum_{n=1}^\infty\left(a_n\cos \omega_nx+b_n\sin \omega_nx\right)
 \end{align}
 ただし，$a_n,b_n$は，
 \begin{align*}
-  a_n & =\frac{1}{\pi}\int_{-\pi}^\pi f(t)\cos(nt) dt,~(n=0,1,2,3,\cdots) \\
-  b_n & =\frac{1}{\pi}\int_{-\pi}^\pi f(t)\sin(nt) dt,~(n=1,2,3,\cdots)
+  a_n & =\frac{2}{T}\int_0^T f(x)\cos\omega_nx dx,~(n=0,1,2,3,\cdots) \\
+  b_n & =\frac{2}{T}\int_0^T f(x)\sin\omega_nx dx,~(n=1,2,3,\cdots)
 \end{align*}
 である．
 
 \subsection{フーリエ変換表}
 
-フーリエ変換表を表\ref{tab:fourier-transform}に示す．
-\begin{table}[htb]
+フーリエ変換表を表\ref{tab:fourier-transform}に示す．ただし，
+\begin{align*}
+  f(0^+)=\lim_{t\to 0}f(t)
+\end{align*}
+である．
+
+\begin{table}[hbt]
   \centering
   \caption{フーリエ変換表}
   \label{tab:fourier-transform}
   \begin{tabular}{c|c}
-    $f(t)$                & $F(s)$                      \\ \hline
-    $f^\prime(t)$         & $sF(s)-f(0)$                \\
-    $f^{\prime\prime}(t)$ & $s^2F(s)-sf(0)-f^\prime(0)$ \\
-    $t^ne^{-at}$          & $n!/(s+a)^{n+1}$            \\
+    $f(t)$                & $F(s)$                        \\ \hline
+    $f^\prime(t)$         & $sF(s)-f(0^+)$                \\
+    $f^{\prime\prime}(t)$ & $s^2F(s)-sf(0)-f^\prime(0^+)$ \\
+    $t^ne^{-at}$          & $n!/(s+a)^{n+1}$              \\
   \end{tabular}
 \end{table}
 
 \subsection{余因子行列}
 
-余因子行列$\tilde{A}$は，余因子$M_{i,j}$を用いると，
+余因子行列$\tilde{A}$は，余因子$A_{ij}:=(-1)^{i+j}\Delta_{ij}$を用いると，
 \begin{align*}
   \tilde{A}=
   \begin{bmatrix}
-    (-1)^{1+1}\left|M_{1,1}\right| & (-1)^{1+2}\left|M_{2,1}\right| & \cdots & (-1)^{1+n}\left|M_{n,1}\right| \\
-    (-1)^{2+1}\left|M_{1,2}\right| & (-1)^{2+2}\left|M_{2,2}\right| & \cdots & (-1)^{2+n}\left|M_{n,2}\right| \\
-    \vdots                         & \vdots                         & \ddots & \vdots                         \\
-    (-1)^{m+1}\left|M_{1,1}\right| & (-1)^{m+2}\left|M_{2,1}\right| & \cdots & (-1)^{1+n}\left|M_{n,m}\right| \\
+    A_{11} & A_{21} & \cdots & A_{n1} \\
+    A_{12} & A_{22} & \cdots & A_{n2} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    A_{1n} & A_{2n} & \cdots & A_{nn} \\
   \end{bmatrix}
 \end{align*}
 と表される．
 
-\subsection{ロピタルの定理}
-
-$x$に関する関数$f(x),g(x)$について，
-\begin{itemize}
-  \item $\lim_{x\to a}\frac{f^\prime(x)}{g^\prime(x)}$が存在すること
-  \item 極限の行き先の十分近くで$g^\prime(x)\neq 0$
-\end{itemize}
-のとき，
-\begin{align*}
-  \lim_{x\to a}\frac{f(x)}{g(x)}=\lim_{x\to a}\frac{f^\prime(x)}{g^\prime(x)}
-\end{align*}
-が成り立つ．
-
 \section{物理}
 
-% \begin{figure}[hbtp]\centering
-%   \includegraphics[width=8cm]{figures/-crop.pdf}
-%   \caption{}
-%   \label{fig:}
-% \end{figure}
+\subsection{ラミの定理}
+
+図\ref{fig:lami-s-theorem}に示すように，点$O$に作用している3力$F_1,F_2,F_3$が釣り合っているとき，
+\begin{align*}
+  \frac{F_1}{\sin(\pi-\theta_1)}=\frac{F_2}{\sin(\pi-\theta_2)}=\frac{F_3}{\sin(\pi-\theta_3)}
+\end{align*}
+となる．
+
+\begin{figure}[hbtp]\centering
+  \includegraphics[width=4cm]{lami-s-theorem.pdf}
+  \caption{3力の釣合いとラミの定理}
+  \label{fig:lami-s-theorem}
+\end{figure}
 
 \end{document}
