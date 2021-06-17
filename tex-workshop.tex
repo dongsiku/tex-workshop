@@ -5,9 +5,13 @@
 \usepackage[dvipdfmx]{graphicx}
 \usepackage{ascmac}
 \usepackage{url}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{booktabs}
+
 %
 \usepackage{titlesec}     % For \titleformat
-% \usepackage{enumerate}  % For enumerate
+\usepackage{enumerate}  % For enumerate
 % \usepackage{ulem}       % For underlining
 %
 \titleformat*{\section}{\large\bfseries}
@@ -31,7 +35,9 @@
 %
 \section{はじめに}
 
-この文書は，\TeX の文法について，数式を中心にざっくりとまとめたものである．本文書も\TeX で書かれているため，必要に応じて\TeX ファイル``tex-workshop.tex''を参照せよ．なお，詳細は``tex ギリシャ文字''などでググること．
+この文書は，\TeX の文法について，数式を中心にざっくりとまとめたものである．本文書も\TeX で書かれているため，必要に応じて\TeX ファイル``tex-workshop.tex''を参照せよ．TeXファイル内の\verb|%|は，コメントアウトするためのコマンドである．詳細は``tex ギリシャ文字''などでググること．
+
+なお，\textbf{先生方によっては，指定される書き方が違う場合}がある．適宜，先生の指示を仰ぐこと．
 
 \section{数式の基本}
 
@@ -93,5 +99,121 @@
   G(s) & =\dfrac{K}{Ts+1}
 \end{align*}
 と表記される．
+
+\section{かっこ}
+
+かっこは，\verb|(),\{\},[]|を用いる．特に，$\{\}$は，\TeX の文法（上付き文字の\verb|^{}|など）と重複しないため，\verb|\|をつけることに注意する．また，上付き文字や分数が含まれる式の場合，かっこを式の大きさに合わせるため，\verb|\left(\right),\left\{\right\},\left[\right]|を用いる．
+
+なお，``physics''パッケージを用いれば，\verb|\left,\right|の代わりに\verb|\qty|を用いて式の大きさに合わせたかっこを記述できる（例：\verb|\qty(),\qty{},\qty[]|など）．詳細は，``数式をもっと楽に書ける TeX の physics パッケージまとめ''（\url{https://qiita.com/HelloRusk/items/ce9f49e9b3fc0344ae23}）などを参照せよ．
+
+\section{ギリシャ文字}
+
+ギリシャ文字は，$\alpha,\beta,\gamma$を\verb|\alpha,\beta,\gamma|などと記述できる．詳細は``tex ギリシア文字''などでググること．
+
+\section{対数，三角関数など}
+
+対数や三角関数は\verb|log,ln,sin,cos|でなく\verb|\log,\ln,\sin,\cos|などのように\verb|\|を先頭につけてローマン体（イタリック体でない文字）で記述する．それぞれの違いは以下のとおりである：$log,ln,sin,cos$ vs. $\log,\ln,\sin,\cos$
+
+\section{極限，合同式}
+
+極限は，\verb|\lim_{x\to\infty}f(x)|
+\begin{align*}
+  \lim_{x\to\infty}f(x)
+\end{align*}
+のように用いる．また，合同式は，\verb|\bmod 2 or \pmod 2|
+\begin{align*}
+  \bmod 2 \text{~or} \pmod 2
+\end{align*}
+のように用いる．
+
+\section{アクセント}
+
+アクセントは，\verb|\tilde{a},\hat{a}|のように用いる．これらは，$\tilde{a},\hat{a}$のように表示される．詳細は``tex hat''などでググること．
+
+\section{フォントを変える}
+
+文のフォントを\textit{italic}に変更するときは\verb|\textit{}|，数式中のフォントをローマンタイに変更するときは\verb|\mathrm{}|などで変更する．また，数式中の日本語には\verb|\text{}|を用いる．
+\begin{align*}
+  s_a = \mathrm{sign}(a),~\text{signは符号を示す}
+\end{align*}
+\underline{下線}の追加や\textcolor{red}{色}の変更も可能でる．詳細はググること．
+
+\section{行列}
+
+\verb|bmatrix|を用いて，
+\begin{align*}
+  \mathbb{A}=
+  \begin{bmatrix}
+    a & b \\
+    c & d \\
+  \end{bmatrix}
+\end{align*}
+などと記述する．
+
+\section{図の挿入と作画}
+
+図について，ベクター画像\footnote{拡大しても画像がギザギザにならないという強みを持つ}であるPDFを用いることを推奨するが，PNGやJPEGなどのビットマップ画像でも問題はない．本節では，作図ソフト，PDFファイルのトリミング，図の挿入の順で説明する．
+
+まず，ベクター画像の作画ソフトについて，著者が知る限り，
+\begin{enumerate} % \usepackage{enumerate} が必要
+  \item Microsoft PowerPoint
+  \item Adobe Illustrator
+  \item Inkscape
+  \item diagrams.net (\url{https://app.diagrams.net/})
+\end{enumerate}
+があり，本研究室では1を使っている学生が多く，著者もこれを推奨する．2はベクター画像の作画ソフトとしては有名なものであるが，高価であり，数式の入力が煩雑である．3は2と同様の機能を持つが無料であり，アドオンを使えば数式の入力も比較的簡単であるが，機能が多く初心者には使いづらい．4はフローチャートは作図しやすいものの，数式の入力が可能であるかは不明である．
+
+次に，PDFのトリミングは，``pdfcrop''コマンドを用いる．``pdfcrop''コマンドは，TeXインストーラ３やTeX Liveを用いてインストールした場合，自動的にインストールされるはずである．例えば，``example.pdf''をトリミングする場合，PowerShellなどのターミナルから
+\\\hrulefill\\
+pdfcrop example.pdf\\
+\hrulefill\\
+などと記述する．コマンドのオプションもあるが，詳細はググること．
+
+最後に，図を挿入するときは，\verb|\begin{figure}~\end{figure}|を用いて，図\ref{fig:example-image}のように挿入する．
+
+\begin{figure}[hbtp]
+  % []の中身について，t,b,p,hはそれぞれページ上端，ページ下端，単独ページ，できればその位置に図を出力するように指定する．
+  % []内の順番は優先順位を示す．
+  \centering % 中央揃えを行う
+  \includegraphics[width=6cm]{example-crop.pdf} % 幅の長さとファイル名を指定する．
+  \caption{図の例} % 図の下にキャプションをつける
+  \label{fig:example-image} % ラベルを付け，文中から図\ref{}で図"番号"とする．
+\end{figure}
+
+\section{表}
+
+表を挿入すときは，\verb|\begin{table}~\end{table}|を用いて，表\ref{tab:example-table}のように挿入する．
+
+\begin{table}[htb]
+  % []の中身について，t,b,p,hはそれぞれページ上端，ページ下端，単独ページ，できればその位置に表を出力するように指定する．
+  % []内の順番は優先順位を示す．
+  \centering % 中央揃えを行う．
+  \caption{表の例} % 表の上にキャプションをつける
+  \label{tab:example-table} % ラベルを付け，文中から表\ref{}で表"番号"とする．
+  \begin{tabular}{lc|r} % l,c,r,|はそれぞれ左寄せ，中央，右寄せ,縦線を示す．
+    左寄せ               & 題目中央         & 右寄せ               \\
+    \hline % 横線
+    要素左寄せ           & 要素中央         & 要素右寄せ           \\
+    要素左寄せ要素左寄せ & 要素中央要素中央 & 要素右寄せ要素右寄せ \\
+  \end{tabular}
+\end{table}
+
+\section{その他}
+
+\subsection{sectionとか}
+
+\verb|\chapter{},\section{},\subsection{}|はそれぞれ章，節，小節を示す．基本的には，\TeX ファイルのテンプレに従っていい感じに用いればよい．
+
+\subsection{参考文献の挿入方法}
+
+\verb|\begin{thebibliography}~\end{thebibliography}|と\verb|\cite{}|を用いる．詳細は，岡野先生の``私家版\LaTeX による工学文書の書き方''を参照するか，ググること
+
+\subsection{usepackage}
+
+パッケージを追加するコマンド\footnote{PythonやJavaの\verb|import|やC言語の\verb|#include|を想像されたい}．本文書の\TeX ファイルでもファイルの先頭を見ると，いくつかのパッケージが追加されていることが確認できるであろう．基本的には，``Undefined control sequence.''などといったエラーメッセージが表示されたときに，足りないパッケージがあるか確認すればよい．
+
+\subsection{newcommand}
+
+\verb|\newcommand|を用いることで，長いコマンドを短くできる．\footnote{bashのaliasを想像されたい}長いコマンドが何回も出てくる文章では，これを用いることを推奨する．
 
 \end{document}
