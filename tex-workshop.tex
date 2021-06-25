@@ -139,7 +139,7 @@
 
 \section{フォントを変える}
 
-文のフォントを\textit{italic}に変更するときは\verb|\textit{}|，数式中のフォントをローマンタイに変更するときは\verb|\mathrm{}|などで変更する．また，数式中の日本語には\verb|\text{}|を用いる．
+文のフォントを\textit{italic}に変更するときは\verb|\textit{}|，数式中のフォントをローマン体に変更するときは\verb|\mathrm{}|などで変更する．また，数式中の日本語には\verb|\text{}|を用いる．
 \begin{align*}
   s_a = \mathrm{sign}(a),~\text{signは符号を示す}
 \end{align*}
@@ -170,7 +170,7 @@
 \end{enumerate}
 があり，本研究室では1を使っている学生が多く，著者もこれを推奨する．2はベクター画像の作画ソフトとしては有名なものであるが，高価であり，数式の入力が煩雑である．3は2と同様の機能を持つが無料であり，アドオンを使えば数式の入力も比較的簡単であるが，機能が多く初心者には使いづらい．4はフローチャートは作図しやすいものの，数式の入力が可能であるかは不明である．
 
-次に，PDFのトリミングは，``pdfcrop''コマンドを用いる．``pdfcrop''コマンドは，TeXインストーラ３やTeX Liveを用いてインストールした場合，自動的にインストールされるはずである．例えば，``example.pdf''をトリミングする場合，PowerShellなどのターミナルから
+次に，PDFのトリミングは，``pdfcrop''コマンドを用いる．``pdfcrop''コマンドは，TeX Liveを用いてインストールした場合，自動的にインストールされるはずである．（TeXインストーラ３を用いた場合は，追加の設定が必要であるため，\ref{sec:pdfcrop-with-texinstaller3}節を参照せよ．）例えば，``example.pdf''をトリミングする場合，PowerShellなどのターミナルから
 \\\hrulefill\\
 pdfcrop example.pdf\\
 \hrulefill\\
@@ -186,6 +186,14 @@ pdfcrop example.pdf\\
   \caption{図の例} % 図の下にキャプションをつける
   \label{fig:example-image} % ラベルを付け，文中から図\ref{}で図"番号"とする．
 \end{figure}
+
+\subsection{TeXインストーラ３を用いてインストールした場合のpdfcropの設定方法}\label{sec:pdfcrop-with-texinstaller3}
+
+以下に示す，Perlのインストールとその設定が必要である．
+\begin{enumerate}
+  \item Strawberry Perlをインストールする．\url{https://strawberryperl.com/}から``strawberry-perl-x.x.x.x-64bit.msi''（xは数字）をダウンロードしてインストールする．
+  \item 環境変数PATHに\url{C:\Program Files (x86)\gs\gsx.x.x\bin}を追加する．
+\end{enumerate}
 
 \section{表}
 
