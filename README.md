@@ -1,48 +1,34 @@
-# LaTeX Workspace Template
+# TeX Workshop
 
-## Environment
+知能機械制御学研究室にて，TeX講習会のために作成したTeXの資料と課題．
 
-Windows Subsystem for Linux (WSL2)
+## 学習目標
 
-```bash:version_infomation
-$ cat /etc/os-release
-NAME="Ubuntu"
-VERSION="20.04.2 LTS (Focal Fossa)"
-ID=ubuntu
-ID_LIKE=debian
-PRETTY_NAME="Ubuntu 20.04.2 LTS"
-VERSION_ID="20.04"
-HOME_URL="https://www.ubuntu.com/"
-SUPPORT_URL="https://help.ubuntu.com/"
-BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
-PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
-VERSION_CODENAME=focal
-UBUNTU_CODENAME=focal
-```
+以下の文法を習得することを目標としている．
 
-## How to start LaTeX
+1. 別行立ての数式（\begin{align}~\end{align}）の入れ方．参考資料として\begin{case}などの使い方を記載する．[参考文献](https://qiita.com/t_kemmochi/items/a4c390b4967b13f3afb7)
+1. 文章内での数式（$$）の入れ方
+1. 式番号の入れ方（\ref）
+1. 上付き，下付き文字（例：a_1^'）
+1. 和・積分（シグマとインテグラル）
+1. 分数
+1. カッコ（例：`\left(\right)`）．参考資料にカッコを簡単につけれる（例：`\qty()`）physicsパッケージについて記載する．[参考文献](https://qiita.com/HelloRusk/items/ce9f49e9b3fc0344ae23)
+1. ギリシア文字（`\alpha`, `\beta`, `\gamma`），演算子（`\leq`, `\geq`）．詳細はググれと明記する．
+1. `\log`,`\ln`,`\sin`とか
+1. `\lim`, `\mod`とか
+1. アクセント（例：`\dot{a}`）
+1. フォントを変える（例：`\mathbb{A}`）
+1. 行列
+1. 図と作画ソフト．pdfcropの使い方については動画（リアルタイムかオンデマンド）で説明する．
+1. 表
+1. その他：`\textit{}`,`\cite{}`,`\newcommand{}`
+1. `\section`
 
-1. Install Visual Studio Code (VSCode).
-1. Install [VSCode-extention: LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop).
-1. (If you use WSL-Ubuntu or other Linux distributions,) Run `setup/setup.sh`
+## 課題
 
-
-## To use for multi file projects
-
-Add **Magic comment** to the first line of TeX files as follows.
-
-```tex
-% !TEX root = main.tex
-```
-
-## References
-
-[VSCode で最高の LaTeX 環境を作る](https://qiita.com/Gandats/items/d7718f12d71e688f3573)
-
-[TeXテンプレート](http://hooktail.org/computer/index.php?TeX%A5%C6%A5%F3%A5%D7%A5%EC%A1%BC%A5%C8)
-
-[James-Yu/LaTeX-Workshop - Multi File projects](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#multi-file-projects)
-
-## FYI
-
-[ehki/jIEEEtran - 電気学会/IEEE, 日英両対応bstファイル](https://github.com/ehki/jIEEEtran)
+課題は，1-15を網羅することを目標に，指定されたテンプレートに5つほどの数式を記述する問題を出題する．現在考えている式（該当する番号）は以下のとおりである．ただし，1-3について，以下では記述していないが，適宜出題するものとする．なお，可能な限り，院試にて必要な公式を出題できるようにしたい．
+- フーリエ級数，マクローリン展開 (4,5,6,7,8,9)
+- フーリエ変換表．ただし，3つほどにする． (15)
+- 余因子行列 (12,13)
+- 力のつり合いの式（`F/\sin⁡(\pi-\theta) =const`）の図を描いて貼り付ける (14)
+- ロピタルの定理 (10)
