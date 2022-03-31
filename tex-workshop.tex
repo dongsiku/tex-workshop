@@ -36,15 +36,17 @@
   {\Large\bfseries \TeX 講習会の資料} % title
 \end{center}
 \begin{flushright}
-  {\large 諏訪 棟植} % author
+  作成者：諏訪 棟植\\
+  作成日：令和3年6月22日\\
+  最終更新日：令和4年3月31日 % author
 \end{flushright}
 %
 %
 \section{はじめに}
 
-この文書は，\TeX の文法について，数式を中心にざっくりとまとめたものである．本文書も\TeX で書かれているため，必要に応じて\TeX ファイル``tex-workshop.tex''を参照せよ．TeXファイル内の\verb|%|は，コメントアウトするためのコマンドである．詳細は``tex ギリシャ文字''などでググること．
+この文書は，\TeX の文法について，数式を中心にざっくりとまとめたものである．本文書も\TeX で書かれているため，必要に応じて\TeX ファイル``tex-workshop.tex''を参照せよ．TeXファイル内の\verb|%|は，コメントアウトするためのコマンドである．本文書に出てこない内容は``tex ○○''などでググること．
 
-なお，以下の2点に注意せよ．(1) \textbf{先生方によっては，指定される書き方が違う場合}がある．適宜，先生の指示を仰ぐこと．(2) 本文書を使用することにより発生するいかなる不利益についても著者は責任をとらない．また，当分の間，改変版も含み，本文書の無断配布を禁ずる．
+なお，以下の2点に注意せよ．(1) \textbf{先生方によっては，指定される書き方が違う場合}がある．適宜，先生の指示を仰ぐこと．(2) 本文書を使用することにより発生するいかなる不利益についても著者は責任をとらない．
 
 \section{数式の基本}
 
@@ -56,15 +58,15 @@
 
 別行立ての数式は，\verb|\begin{align},\end{align}|といったように，``align''で囲んで書く．また，2行以上の数式の場合は，\verb|&|を用いることで，文字を揃えられる．なお，数式中の空白文字は無視されるため，必要な時は\verb|~|や\verb|\quad|などを用いる．
 \begin{align}
-  x^3+y^3             & =(x+y)\left(x^2-xy+y^2\right) \label{factorization-1} \\
-  x^3-y^3             & =(x-y)\left(x^2+xy+y^2\right) \label{factorization-2} \\
-  \frac{x^3-y^3}{x-y} & =x^2+xy+y^2,~(x\neq y) \label{factorization-3}
+  x^3+y^3             & =(x+y)\left(x^2-xy+y^2\right) \label{eq:factorization-1} \\
+  x^3-y^3             & =(x-y)\left(x^2+xy+y^2\right) \label{eq:factorization-2} \\
+  \frac{x^3-y^3}{x-y} & =x^2+xy+y^2,~(x\neq y) \label{eq:factorization-3}
 \end{align}
 
 \subsection{式番号}
 
-ここで，\eqref{factorization-1}などと数式を指定する場合は，式に\verb|\label{factorization-1}|などのラベル付けたうえで，\verb|\eqref{factorization-1}|のように``eqref''を使う．数式の番号が一部のみ必要なときは，\eqref{factorization-4}のように\verb|\nonumber|を用いる．
-\begin{align}\label{factorization-4}
+ここで，\eqref{eq:factorization-1}などと数式を指定する場合は，式に\verb|\label{eq:factorization-1}|などのラベル付けたうえで，\verb|\eqref{eq:factorization-1}|のように``eqref''を使う．数式の番号が一部のみ必要なときは，\eqref{eq:factorization-4}のように\verb|\nonumber|を用いる．
+\begin{align}\label{eq:factorization-4}
   4x^2+8x+4 & =4\left(x^2+2x+1\right)\nonumber \\
             & =4(x+1)^2
 \end{align}
@@ -87,7 +89,7 @@
 
 \section{下付き文字と上付き文字}
 
-下付き文字$z_1<1$は，\verb|$z_1<1$|のように\verb|_|を，上付き文字は$j^2=-1$のように\verb|^|を用いる．なお，下付き文字や上付き文字が2文字以上$a_{10},b^{20},c_{10}^{20}$のときは\verb|$a_{10},b^{20},c_{10}^{20}$|のように\verb|{ }|を用いる．
+下付き文字$z_1<1$は，\verb|$z_1<1$|のように\verb|_|を用い，上付き文字$j^2=-1$は\verb|$j^2=-1$|のように\verb|^|を用いる．なお，下付き文字や上付き文字が2文字以上$a_{10},b^{20},c_{10}^{20}$のときは\verb|$a_{10},b^{20},c_{10}^{20}$|のように\verb|{ }|を用いる．
 
 \section{和・積分（シグマとインテグラル）}
 
@@ -170,7 +172,7 @@
 \end{enumerate}
 があり，本研究室では1を使っている学生が多く，著者もこれを推奨する．2はベクター画像の作画ソフトとしては有名なものであるが，高価であり，数式の入力が煩雑である．3は2と同様の機能を持つが無料であり，アドオンを使えば数式の入力も比較的簡単であるが，機能が多く初心者には使いづらい．4はフローチャートは作図しやすいものの，数式の入力が可能であるかは不明である．
 
-次に，PDFのトリミングは，``pdfcrop''コマンドを用いる．``pdfcrop''コマンドは，TeX Liveを用いてインストールした場合，自動的にインストールされるはずである．（TeXインストーラ３を用いた場合は，追加の設定が必要であるため，\ref{sec:pdfcrop-with-texinstaller3}節を参照せよ．）例えば，``example.pdf''をトリミングする場合，PowerShellなどのターミナルから
+次に，PDFのトリミングは，``pdfcrop''コマンドを用いる．``pdfcrop''コマンドは，TeX Liveを用いてインストールした場合，自動的にインストールされるはずである．例えば，``example.pdf''をトリミングする場合，PowerShellなどのターミナルから
 \\\hrulefill\\
 pdfcrop example.pdf\\
 \hrulefill\\
@@ -186,14 +188,6 @@ pdfcrop example.pdf\\
   \caption{図の例} % 図の下にキャプションをつける
   \label{fig:example-image} % ラベルを付け，文中から図\ref{}で図"番号"とする．
 \end{figure}
-
-\subsection{TeXインストーラ３を用いてインストールした場合のpdfcropの設定方法}\label{sec:pdfcrop-with-texinstaller3}
-
-以下に示す，Perlのインストールとその設定が必要である．
-\begin{enumerate}
-  \item Strawberry Perlをインストールする．\url{https://strawberryperl.com/}から``strawberry-perl-x.x.x.x-64bit.msi''（xは数字）をダウンロードしてインストールする．
-  \item 環境変数PATHに\url{C:\Program Files (x86)\gs\gsx.x.x\bin}を追加する．
-\end{enumerate}
 
 \section{表}
 
